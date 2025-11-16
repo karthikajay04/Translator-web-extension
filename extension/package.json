@@ -1,0 +1,19 @@
+{
+  "name": "ai-translator-extension",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "vite": "3.2.7",
+    "@vitejs/plugin-react": "2.2.0",
+    "@crxjs/vite-plugin": "1.0.14"
+  }
+}
