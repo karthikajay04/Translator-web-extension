@@ -4,9 +4,9 @@ let overlay = null;
 let lastCaption = "";
 let enabled = true;
 
-// -------------------------------
+
 // Create subtitle overlay
-// -------------------------------
+
 function createOverlay() {
   if (overlay) return overlay;
 
@@ -39,9 +39,9 @@ function removeOverlay() {
   lastCaption = "";
 }
 
-// -------------------------------
+
 // Caption Observer
-// -------------------------------
+
 const debouncedTranslate = (() => {
   let t;
   return (fn) => {
@@ -101,18 +101,15 @@ function observeCaptions(lang) {
   observer.observe(document.body, { childList: true, subtree: true });
 }
 
-// -------------------------------
+
 // MESSAGE HANDLERS
-// -------------------------------
 chrome.runtime.onMessage.addListener((msg) => {
   if (msg.action === "DISABLE_YT_TRANSLATION") {
     removeOverlay();
   }
 });
 
-// -------------------------------
 // Language mapping utility
-// -------------------------------
 function getLocaleCode(languageName) {
   const map = {
     "English": "en",
@@ -131,9 +128,7 @@ function getLocaleCode(languageName) {
   return map[languageName] || "en";
 }
 
-// -------------------------------
 // Auto-enable when injected
-// -------------------------------
 chrome.storage.local.get(["youtubeEnabled", "targetLang"], (res) => {
   if (!res.youtubeEnabled) return;
   const langName = res.targetLang || "English";

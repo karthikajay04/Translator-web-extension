@@ -55,9 +55,7 @@ function cleanAIResponse(text = "") {
     .trim();
 }
 
-/* ---------------------------------------------------
-   OPENROUTER GENERATE FUNCTION
---------------------------------------------------- */
+// OPENROUTER GENERATE FUNCTION
 async function generateWithOpenRouter(prompt, systemPrompt) {
   try {
     const messages = [];
@@ -115,9 +113,8 @@ async function generateWithOpenRouter(prompt, systemPrompt) {
   }
 }
 
-/* ---------------------------------------------------
-   SYSTEM PROMPT (BUILT-IN)
---------------------------------------------------- */
+  //  SYSTEM PROMPT
+
 const SYSTEM_PROMPT = `
 You are an AI content generator inside a Chrome extension.
 Your job is to rewrite or generate text based on the user's mood:
@@ -130,9 +127,7 @@ Your job is to rewrite or generate text based on the user's mood:
 Preserve meaning. Keep responses clean. Do NOT add unrelated info.
 `;
 
-/* ---------------------------------------------------
-   REAL LANGUAGE DETECT (LINGO)
---------------------------------------------------- */
+//  LANGUAGE DETECT (LINGO)
 app.post("/detect", async (req, res) => {
   try {
     const { text } = req.body || {};
@@ -146,9 +141,7 @@ app.post("/detect", async (req, res) => {
   }
 });
 
-/* ---------------------------------------------------
-   REAL TEXT TRANSLATION (LINGO)
---------------------------------------------------- */
+// TEXT TRANSLATION (LINGO)
 app.post("/translateText", async (req, res) => {
   let text = "";
   try {
@@ -180,9 +173,7 @@ app.post("/translateText", async (req, res) => {
   }
 });
 
-/* ---------------------------------------------------
-   REAL HTML TRANSLATION (LINGO)
---------------------------------------------------- */
+// HTML TRANSLATION (LINGO)
 app.post("/translateHtml", async (req, res) => {
   let html = "";
   try {
@@ -215,9 +206,8 @@ app.post("/translateHtml", async (req, res) => {
   }
 });
 
-/* ---------------------------------------------------
-   /translate (Compatibility API) - REAL LINGO
---------------------------------------------------- */
+  //  /translate (Compatibility API) - REAL LINGO
+
 app.post("/translate", async (req, res) => {
   let text = "";
   try {
@@ -259,9 +249,7 @@ app.post("/translate", async (req, res) => {
   }
 });
 
-/* ---------------------------------------------------
-   /api/generate  (REAL AI VIA OPENROUTER)
---------------------------------------------------- */
+// /api/generate(openrouter)
 app.post("/api/generate", async (req, res) => {
   try {
     const { text, mood } = req.body || {};
@@ -284,9 +272,7 @@ Rewrite or generate text matching the mood. Do not change meaning.
   }
 });
 
-/* ---------------------------------------------------
-   START SERVER
---------------------------------------------------- */
+
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log(`Backend running on http://localhost:${PORT}`);

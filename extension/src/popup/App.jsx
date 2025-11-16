@@ -18,9 +18,7 @@ export default function App(){
   const [genLoading, setGenLoading] = useState(false);
   const [youtubeEnabled, setYoutubeEnabled] = useState(false);
 
-  // ---------------------------------------
   // Load settings from chrome.storage
-  // ---------------------------------------
   useEffect(() => {
     chrome.storage.local.get(["history", "youtubeEnabled", "targetLang"], (res) => {
       setHistory(res.history || []);
@@ -41,9 +39,7 @@ export default function App(){
     chrome.storage.local.set({ targetLang: target });
   }, [target]);
 
-  // ---------------------------------------
   // Backend: detect language
-  // ---------------------------------------
   async function detectLanguage(txt){
     try{
       const res = await fetch("http://localhost:5001/detect", {
@@ -58,9 +54,7 @@ export default function App(){
     }
   }
 
-  // ---------------------------------------
   // Text translation
-  // ---------------------------------------
   async function translate(){
     if (!text || !text.trim()) {
       setOutput("Please enter some text to translate.");
@@ -125,9 +119,7 @@ export default function App(){
     }
   }
 
-  // ---------------------------------------
   // Full Page Translation
-  // ---------------------------------------
   function translatePage(){
     const localeCode = getLocaleCode(target);
     chrome.runtime.sendMessage({ 
@@ -136,9 +128,7 @@ export default function App(){
     });
   }
 
-  // ---------------------------------------
   // YouTube Auto Translate Toggle
-  // ---------------------------------------
   function toggleYoutube(){
     const newValue = !youtubeEnabled;
     setYoutubeEnabled(newValue);
@@ -151,9 +141,7 @@ export default function App(){
     });
   }
 
-  // ---------------------------------------
   // Generate (AI)
-  // ---------------------------------------
   async function generate(){
     setGenLoading(true);
     setGenOutput("");
@@ -176,9 +164,7 @@ export default function App(){
     }
   }
 
-  // ---------------------------------------
   // Utility buttons
-  // ---------------------------------------
   function speak(){
     if(!output) return;
     const utter = new SpeechSynthesisUtterance(output);
@@ -196,9 +182,7 @@ export default function App(){
     chrome.storage.local.set({ history: [] });
   }
 
-  // ---------------------------------------
   // UI
-  // ---------------------------------------
   return (
     <div className="p-4 w-96 font-sans bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
       <h2 className="text-2xl font-bold mb-4 text-center text-indigo-800">AI Extension</h2>

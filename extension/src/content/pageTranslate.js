@@ -21,7 +21,7 @@ chrome.runtime.onMessage.addListener(async (message) => {
 
     if (!res.ok) {
       const errorData = await res.json().catch(() => ({}));
-      // Handle payment/limit errors specifically
+      // Handle limit errors 
       if (res.status === 402) {
         throw new Error(errorData.message || "Translation limit reached. Please upgrade your Lingo.dev plan.");
       }
